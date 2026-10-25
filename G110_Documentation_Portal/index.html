@@ -1,0 +1,1382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team 110 | Automated Coastal Surveillance & Spatial Crowd Counting AI Portal</title>
+    <meta name="description" content="Official Documentation Portal for Team 110: AI-Powered Coastal Human Detection, Spatial Domain Classification (Water vs. Land), and Crowd Density Analysis.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- TOP NAVIGATION BAR -->
+    <header class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <img src="assets/LOGO1.png" alt="Amrita Vishwa Vidyapeetham Logo" class="brand-logo" onerror="this.style.display='none'">
+                <div class="brand-text">
+                    <span class="brand-title">TEAM 110</span>
+                    <span class="brand-subtitle">COASTAL SURVEILLANCE & SPATIAL AI</span>
+                </div>
+            </div>
+
+            <nav class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#dataset">Dataset</a>
+                <a href="#models">5 Models</a>
+                <a href="#benchmarks">Benchmarks</a>
+                <a href="#detections-showcase">Detections</a>
+                <a href="#confusion-matrices">Confusion Matrices</a>
+                <a href="#workflow">Workflow</a>
+                <a href="#team">Team</a>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="https://github.com/MBalajiSakthivel007/G110_Github" target="_blank" rel="noopener noreferrer" class="btn btn-outline" id="github-repo-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                    </svg>
+                    <span>GitHub</span>
+                </a>
+                <a href="assets/IEEE_Coastal_Surveillance_Draft_Paper.pdf" download="Team110_Coastal_Surveillance_Draft_Paper.pdf" class="btn btn-primary" id="download-paper-btn">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>
+                    </svg>
+                    <span>Draft Paper (PDF)</span>
+                </a>
+            </div>
+
+            <button class="mobile-menu-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="hero">
+        <div class="hero-bg-glow"></div>
+        <div class="container hero-content">
+            <div class="hero-badges">
+                <span class="badge badge-accent">🌊 23CSE498 Project Phase 2</span>
+                <span class="badge badge-success">Type 1: Research Project</span>
+                <span class="badge badge-primary">Amrita School of Computing</span>
+            </div>
+
+            <h1 class="hero-title">
+                Automated Coastal Human Surveillance, Spatial Domain Classification & Crowd Density Analysis
+            </h1>
+
+            <p class="hero-description">
+                A high-precision multi-paradigm computer vision framework benchmarking <strong>Detectron2 (Faster R-CNN R-101 FPN)</strong>, 
+                <strong>RT-DETR (Vision Transformer)</strong>, <strong>YOLOv8x-P2 (Stride-4 Small-Object Head)</strong>, 
+                <strong>Faster R-CNN (ResNet-50)</strong>, and <strong>RetinaNet (Focal Loss)</strong>. Features customized 16px sub-scale anchors, 
+                dual-zone spatial classification (<strong>Water Swimmer vs. Land Beachgoer</strong>), and dual-line ground truth verification banners.
+            </p>
+
+            <!-- ACCURATE EMPIRICAL METRICS GRID -->
+            <div class="telemetry-grid">
+                <div class="telemetry-card">
+                    <div class="telemetry-value">94.86%</div>
+                    <div class="telemetry-label">RT-DETR mAP@0.50</div>
+                    <div class="telemetry-sub">Transformer Global Attention Leader</div>
+                </div>
+                <div class="telemetry-card">
+                    <div class="telemetry-value">94.15%</div>
+                    <div class="telemetry-label">Detectron2 mAP@0.50</div>
+                    <div class="telemetry-sub">Primary Model (95.8% Precision)</div>
+                </div>
+                <div class="telemetry-card">
+                    <div class="telemetry-value">16px</div>
+                    <div class="telemetry-label">Sub-Scale Anchor Base</div>
+                    <div class="telemetry-sub">Detects Tiny 6px–12px Distant Swimmers</div>
+                </div>
+                <div class="telemetry-card">
+                    <div class="telemetry-value">702 Frames</div>
+                    <div class="telemetry-label">High-Resolution Dataset</div>
+                    <div class="telemetry-sub">16,022 Validated Human Annotations</div>
+                </div>
+                <div class="telemetry-card">
+                    <div class="telemetry-value">1,874 Boxes</div>
+                    <div class="telemetry-label">Clutter Artifacts Purged</div>
+                    <div class="telemetry-sub">Zero False Positives on Cones/Towels</div>
+                </div>
+            </div>
+
+            <div class="hero-cta-group">
+                <a href="#models" class="btn btn-lg btn-primary">
+                    <span>Explore 5 Models</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+                <a href="#benchmarks" class="btn btn-lg btn-outline">
+                    <span>Master Benchmark Table</span>
+                </a>
+                <a href="#detections-showcase" class="btn btn-lg btn-accent">
+                    <span>Ground Truth vs Prediction</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROBLEM STATEMENT & METHODOLOGY -->
+    <section class="section" id="overview">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">DOMAIN COMPLEXITY & SCOPE FORMULATION</span>
+                <h2 class="section-title">Coastal Surveillance Challenges & Research Objectives</h2>
+                <p class="section-subtitle">
+                    Why standard computer vision models fail in unstructured beach environments and how our specialized spatial detection framework resolves marine optical disturbances.
+                </p>
+            </div>
+
+            <div class="grid grid-2">
+                <div class="card glass-card">
+                    <div class="card-icon icon-danger">⚠️</div>
+                    <h3 class="card-title">Critical Coastal Optical Complexities</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Extreme Scale Disparity:</strong> Due to elevated camera vantage points, beachgoers near the shoreline occupy over 120 pixels, whereas distant swimmers in breaking surf span merely 6 to 12 pixels.
+                        </li>
+                        <li>
+                            <strong>Dynamic Water Glare & Sun Reflections:</strong> Sunlight reflecting off breaking waves and white-water surf mimics small moving objects, triggering false alarms in off-the-shelf detectors.
+                        </li>
+                        <li>
+                            <strong>Severe Partial Submergence:</strong> Swimmers navigating breaking wave crests are intermittently submerged, leaving only heads or upper torsos visible.
+                        </li>
+                        <li>
+                            <strong>Inanimate Visual Clutter:</strong> Orange safety cones, beach umbrellas, sunbather towels, and surfboards produce high false-positive rates in generic COCO pre-trained models.
+                        </li>
+                        <li>
+                            <strong>Manual Surveillance Constraints:</strong> Lifeguard high-tower observation suffers from rapid visual fatigue, adverse weather blind spots, and subjective crowd density estimations.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card glass-card">
+                    <div class="card-icon icon-success">🎯</div>
+                    <h3 class="card-title">Core Technical Objectives</h3>
+                    <ul class="feature-list">
+                        <li>
+                            <strong>Multi-Paradigm Benchmarking:</strong> Implement, optimize, and rigorously benchmark 5 deep learning paradigms: Detectron2 (Two-Stage R-101 FPN), RT-DETR (Vision Transformer), YOLOv8x-P2 (Small-Object Head), Faster R-CNN (Two-Stage Proposal), and RetinaNet (Dynamic Focal Loss).
+                        </li>
+                        <li>
+                            <strong>Sub-Scale Anchor Architecture:</strong> Reconfigure Region Proposal Networks with custom 16px sub-scale anchors (`[[16], [32], [64], [128], [256]]`) to prevent tiny distant swimmer proposal dropouts.
+                        </li>
+                        <li>
+                            <strong>Dual-Zone Spatial Classification:</strong> Discard generic single-class labeling in favor of precise spatial domain classification: <strong>Class 0: Coastal (Water Swimmer)</strong> vs. <strong>Class 1: Human on Land (Beachgoer)</strong>.
+                        </li>
+                        <li>
+                            <strong>Geometric Clutter Rejection:</strong> Institute dual post-inference filters: confidence cutoff ($\text{conf} \ge 0.40$) and bounding box aspect ratio ($H/W \ge 0.55$) to eliminate towels and surfboards.
+                        </li>
+                        <li>
+                            <strong>Dual-Line Verification Telemetry:</strong> Annotate every evaluation scene with a clear 60px dual-line banner comparing Ground Truth with Model Prediction (`L: Count`).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- SYSTEM ARCHITECTURE DIAGRAM SHOWCASE -->
+            <div class="architecture-showcase glass-card mt-5">
+                <div class="arch-header">
+                    <div>
+                        <h3 class="card-title">End-to-End Coastal Surveillance Pipeline Architecture</h3>
+                        <p class="text-muted">Multi-Layer Processing Pipeline from Data Ingestion to Dual-Zone Spatial Headcount Telemetry</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/arch_diag.png', 'End-to-End Coastal Surveillance Pipeline Architecture')">Enlarge Architecture</button>
+                </div>
+                <div class="arch-image-wrapper">
+                    <img src="assets/arch_diag.png" alt="System Architecture Workflow Diagram" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                </div>
+                <div class="arch-layers-grid">
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 1</span>
+                        <h4>Data Ingestion</h4>
+                        <p>High-tower coastal surveillance frames normalized to standardized 960×960 resolution.</p>
+                    </div>
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 2</span>
+                        <h4>Dataset Sanitization</h4>
+                        <p>Roboflow semantic inversion correction (0 Sand / 1 Water) and 1,874 clutter box purging.</p>
+                    </div>
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 3</span>
+                        <h4>Anchor Optimization</h4>
+                        <p>Custom 16px anchor scales: [[16], [32], [64], [128], [256]] with aspect ratios [0.5, 1.0, 2.0].</p>
+                    </div>
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 4</span>
+                        <h4>5-Model Benchmark</h4>
+                        <p>Comparative forward pass across Detectron2, RT-DETR, YOLOv8x-P2, Faster R-CNN, and RetinaNet.</p>
+                    </div>
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 5</span>
+                        <h4>Clutter Filtering</h4>
+                        <p>Confidence cutoff (≥ 0.40) & geometric aspect ratio (H/W ≥ 0.55) suppressing wave crest artifacts.</p>
+                    </div>
+                    <div class="arch-layer-item">
+                        <span class="layer-num">LAYER 6</span>
+                        <h4>Dual-Line Telemetry</h4>
+                        <p>60px visual banner: Ground Truth (Actual) vs. Model Prediction (L: Count) by domain.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: DATASET ARCHITECTURE & SANITIZATION -->
+    <section class="section section-dark" id="dataset">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">DATASET AUDIT & PREPROCESSING PIPELINE</span>
+                <h2 class="section-title">Coastal Dataset Auditing, Class Inversion Fix & Sanitization</h2>
+                <p class="section-subtitle">
+                    Transforming noisy raw surveillance data into a verified 702-image, 16,022-annotation benchmark for rigorous deep vision evaluation.
+                </p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="card glass-card">
+                    <div class="badge badge-accent mb-2">DEFECT 1 RESOLVED</div>
+                    <h3 class="card-title">Semantic Class Inversion Bug</h3>
+                    <p>
+                        A systematic audit revealed that raw Roboflow dataset annotations inverted standard semantics: dry beach sand was indexed as <code>0</code> and open ocean water was indexed as <code>1</code>.
+                    </p>
+                    <div class="code-box">
+                        <code>ROBOFLOW_TO_MODEL = {0: 1, 1: 0}</code><br>
+                        <code># Raw 0 (Sand)  -> Model Class 1: Human (Land)</code><br>
+                        <code># Raw 1 (Water) -> Model Class 0: Coastal (Water)</code>
+                    </div>
+                    <p class="mt-2 text-sm text-muted">
+                        Applied across all PyTorch dataloaders, dataset YAML configs, and COCO evaluation scripts.
+                    </p>
+                </div>
+
+                <div class="card glass-card">
+                    <div class="badge badge-accent mb-2">DEFECT 2 RESOLVED</div>
+                    <h3 class="card-title">1,874 Clutter Artifacts Purged</h3>
+                    <p>
+                        Human annotators in public coastal sets frequently mislabeled non-human beach equipment as people. We performed an exhaustive audit and removed 1,874 spurious boxes:
+                    </p>
+                    <ul class="clean-list text-sm">
+                        <li>❌ Orange traffic & warning cones</li>
+                        <li>❌ Flat sand towels & picnic blankets</li>
+                        <li>❌ Sun umbrellas & surfboards</li>
+                    </ul>
+                    <p class="mt-2 text-sm text-muted">
+                        Purged via automated bounding box aspect ratio rules ($H/W \ge 0.55$) and manual verification.
+                    </p>
+                </div>
+
+                <div class="card glass-card">
+                    <div class="badge badge-success mb-2">STANDARDIZED TAXONOMY</div>
+                    <h3 class="card-title">Dual-Zone Semantic Classes</h3>
+                    <div class="taxonomy-item">
+                        <div class="taxonomy-color-dot dot-water"></div>
+                        <div>
+                            <strong>Class 0: Coastal (Water) — Tag: [W]</strong>
+                            <p class="text-sm text-muted">Swimmers, waders, bodyboarders in active surf. (Cyan Ground Truth / Royal Blue Prediction).</p>
+                        </div>
+                    </div>
+                    <div class="taxonomy-item mt-2">
+                        <div class="taxonomy-color-dot dot-land"></div>
+                        <div>
+                            <strong>Class 1: Human (Land) — Tag: [L]</strong>
+                            <p class="text-sm text-muted">Beachgoers, pedestrians, lifeguards on dry sand. (Green Ground Truth / Red Prediction).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DATASET SPLITS TABLE -->
+            <div class="card glass-card mt-4">
+                <h4 class="card-title mb-3">Verified Dataset Distribution & Human Instance Counts</h4>
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Dataset Split</th>
+                                <th>Image Frames</th>
+                                <th>Validated Annotations</th>
+                                <th>Water Swimmers (Class 0)</th>
+                                <th>Land Beachgoers (Class 1)</th>
+                                <th>Resolution</th>
+                                <th>Evaluation Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Training Set</strong></td>
+                                <td><span class="stat-highlight">462 images</span></td>
+                                <td><span class="stat-highlight">10,636 humans</span></td>
+                                <td>4,128 instances</td>
+                                <td>6,508 instances</td>
+                                <td>960×960 RGB</td>
+                                <td>Multi-task loss gradient optimization</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Validation Set</strong></td>
+                                <td><span class="stat-highlight">160 images</span></td>
+                                <td><span class="stat-highlight">3,571 humans</span></td>
+                                <td>1,342 instances</td>
+                                <td>2,229 instances</td>
+                                <td>960×960 RGB</td>
+                                <td>Hyperparameter tuning & early stopping</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Holdout Test Set</strong></td>
+                                <td><span class="stat-highlight">80 images</span></td>
+                                <td><span class="stat-highlight">1,815 humans</span></td>
+                                <td>689 instances</td>
+                                <td>1,126 instances</td>
+                                <td>960×960 RGB</td>
+                                <td>Unbiased benchmark evaluation & confusion matrices</td>
+                            </tr>
+                            <tr class="table-total-row">
+                                <td><strong>Total Cleaned Corpus</strong></td>
+                                <td><strong>702 images</strong></td>
+                                <td><strong>16,022 humans</strong></td>
+                                <td><strong>6,159 instances</strong></td>
+                                <td><strong>9,863 instances</strong></td>
+                                <td>Standardized</td>
+                                <td><strong>100% Sanitized & Clutter-Purged</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: THE 5 MODELS INTERACTIVE DEEP DIVE -->
+    <section class="section" id="models">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">MULTI-PARADIGM DEEP LEARNING ARCHITECTURES</span>
+                <h2 class="section-title">Deep Dive: The 5 Evaluated Deep Learning Paradigms</h2>
+                <p class="section-subtitle">
+                    Examine each model's architectural blueprint, technical configurations, empirical metrics, confusion matrices, and detection outputs.
+                </p>
+            </div>
+
+            <!-- MODEL SELECTOR TABS -->
+            <div class="model-tabs-container">
+                <button class="model-tab active" onclick="switchModelTab(0)">
+                    <span class="tab-badge">MODEL 1</span>
+                    <span class="tab-title">Detectron2 (R-101 FPN)</span>
+                    <span class="tab-lead">M. Balaji Sakthivel</span>
+                </button>
+                <button class="model-tab" onclick="switchModelTab(1)">
+                    <span class="tab-badge">MODEL 2</span>
+                    <span class="tab-title">RT-DETR (Transformer)</span>
+                    <span class="tab-lead">Chitturi V. Chaitanya</span>
+                </button>
+                <button class="model-tab" onclick="switchModelTab(2)">
+                    <span class="tab-badge">MODEL 3</span>
+                    <span class="tab-title">YOLOv8x-P2 (Small Head)</span>
+                    <span class="tab-lead">R. Shanmugham</span>
+                </button>
+                <button class="model-tab" onclick="switchModelTab(3)">
+                    <span class="tab-badge">MODEL 4</span>
+                    <span class="tab-title">Faster R-CNN (R-50)</span>
+                    <span class="tab-lead">Bhargava Ram Kaza</span>
+                </button>
+                <button class="model-tab" onclick="switchModelTab(4)">
+                    <span class="tab-badge">MODEL 5</span>
+                    <span class="tab-title">RetinaNet (Focal Loss)</span>
+                    <span class="tab-lead">Shaik Ibbraheem</span>
+                </button>
+            </div>
+
+            <!-- MODEL PANELS CONTAINER -->
+            <div class="model-panels-container">
+
+                <!-- PANEL 1: DETECTRON2 -->
+                <div class="model-panel active" id="model-panel-0">
+                    <div class="model-panel-grid">
+                        <div class="model-info-col">
+                            <div class="model-meta">
+                                <span class="badge badge-primary">Two-Stage Deep Residual</span>
+                                <span class="badge badge-accent">Primary Model Engine</span>
+                                <span class="badge badge-success">Lead: M. Balaji Sakthivel (CB.SC.U4CSE23213)</span>
+                            </div>
+                            <h3 class="model-heading">Detectron2: Faster R-CNN with ResNet-101 Backbone & FPN</h3>
+                            <p class="model-summary">
+                                Primary architecture chosen for coastal high-tower surveillance. Built on FAIR's modular platform, it combines a 101-layer deep residual network with lateral Feature Pyramid connections ($P_2$--$P_6$) and customized 16px sub-scale anchors.
+                            </p>
+
+                            <div class="spec-table">
+                                <div class="spec-row"><span class="spec-key">Backbone:</span><span class="spec-val">ResNet-101 (4 residual stages, bottleneck blocks)</span></div>
+                                <div class="spec-row"><span class="spec-key">Feature Neck:</span><span class="spec-val">Feature Pyramid Network (FPN, 256 uniform channels)</span></div>
+                                <div class="spec-row"><span class="spec-key">Custom Anchors:</span><span class="spec-val">[[16], [32], [64], [128], [256]] with ratios [0.5, 1.0, 2.0]</span></div>
+                                <div class="spec-row"><span class="spec-key">RoI Pooling:</span><span class="spec-val">RoIAlign 7×7 continuous bilinear interpolation</span></div>
+                                <div class="spec-row"><span class="spec-key">Loss Formulation:</span><span class="spec-val">$\mathcal{L} = \mathcal{L}_{\text{rpn\_cls}} + \mathcal{L}_{\text{rpn\_box}} + \mathcal{L}_{\text{roi\_cls}} + \mathcal{L}_{\text{roi\_box}}$</span></div>
+                                <div class="spec-row"><span class="spec-key">Training Iterations:</span><span class="spec-val">6,000 iterations ($\approx 52$ epochs) on Dual Tesla T4 GPUs</span></div>
+                            </div>
+
+                            <div class="metrics-pill-group mt-3">
+                                <div class="metric-pill"><span class="mp-val">94.15%</span><span class="mp-lbl">mAP@0.50</span></div>
+                                <div class="metric-pill"><span class="mp-val">68.48%</span><span class="mp-lbl">mAP@0.5:0.95</span></div>
+                                <div class="metric-pill"><span class="mp-val">95.80%</span><span class="mp-lbl">Precision</span></div>
+                                <div class="metric-pill"><span class="mp-val">92.40%</span><span class="mp-lbl">Recall</span></div>
+                                <div class="metric-pill"><span class="mp-val">94.07%</span><span class="mp-lbl">F1-Score</span></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-primary" onclick="openModelModal(0)">Open Full Detectron2 Architecture & Details</button>
+                            </div>
+                        </div>
+
+                        <div class="model-visual-col">
+                            <div class="visual-card">
+                                <h4>Ground Truth vs. Model Prediction (Dual-Line Header)</h4>
+                                <img src="assets/detectron2_scene1.png" alt="Detectron2 Ground Truth vs Prediction" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Dual-line verification banner: Actual Ground Truth Count vs. Model Predicted Count (L: Count).</span>
+                            </div>
+                            <div class="visual-card mt-3">
+                                <h4>Dual-Zone Confusion Matrix</h4>
+                                <img src="assets/detectron2conf.png" alt="Detectron2 Confusion Matrix" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Strict spatial separation between Water Swimmer (Class 0) and Land Beachgoer (Class 1).</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 2: RT-DETR -->
+                <div class="model-panel" id="model-panel-1">
+                    <div class="model-panel-grid">
+                        <div class="model-info-col">
+                            <div class="model-meta">
+                                <span class="badge badge-primary">End-to-End Vision Transformer</span>
+                                <span class="badge badge-accent">Highest Overall mAP (94.86%)</span>
+                                <span class="badge badge-success">Lead: Chitturi Venkata Chaitanya (CB.SC.U4CSE23214)</span>
+                            </div>
+                            <h3 class="model-heading">RT-DETR: Real-Time DEtection TRansformer with Hybrid Encoder</h3>
+                            <p class="model-summary">
+                                Eliminates the Non-Maximum Suppression (NMS) heuristic bottleneck using Hungarian bipartite matching. Combines convolutional feature extraction with an efficient hybrid encoder (AIFI + CCFM) to deliver benchmark-leading global attention.
+                            </p>
+
+                            <div class="spec-table">
+                                <div class="spec-row"><span class="spec-key">Backbone:</span><span class="spec-val">High-performance HGNet-v2 / ResNet-50 extracting S3, S4, S5</span></div>
+                                <div class="spec-row"><span class="spec-key">Hybrid Encoder:</span><span class="spec-val">AIFI (Intra-scale interaction on S5) + CCFM (Cross-scale fusion)</span></div>
+                                <div class="spec-row"><span class="spec-key">Query Selection:</span><span class="spec-val">IoU-aware query selection initializing 300 target queries</span></div>
+                                <div class="spec-row"><span class="spec-key">Transformer Decoder:</span><span class="spec-val">6 decoder layers with deformable cross-attention</span></div>
+                                <div class="spec-row"><span class="spec-key">Loss Formulation:</span><span class="spec-val">End-to-end Bipartite Hungarian Loss (Focal Loss + GIoU + L1)</span></div>
+                            </div>
+
+                            <div class="metrics-pill-group mt-3">
+                                <div class="metric-pill"><span class="mp-val">94.86%</span><span class="mp-lbl">mAP@0.50</span></div>
+                                <div class="metric-pill"><span class="mp-val">84.25%</span><span class="mp-lbl">mAP@0.5:0.95</span></div>
+                                <div class="metric-pill"><span class="mp-val">88.71%</span><span class="mp-lbl">Precision</span></div>
+                                <div class="metric-pill"><span class="mp-val">93.78%</span><span class="mp-lbl">Recall</span></div>
+                                <div class="metric-pill"><span class="mp-val">91.17%</span><span class="mp-lbl">F1-Score</span></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-primary" onclick="openModelModal(1)">Open Full RT-DETR Details & Matrices</button>
+                            </div>
+                        </div>
+
+                        <div class="model-visual-col">
+                            <div class="visual-card">
+                                <h4>RT-DETR Detection Predictions on Coastal Benchmark</h4>
+                                <img src="assets/rtdetr_pred.jpg" alt="RT-DETR Detection Predictions" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">NMS-free bipartite query matching identifying swimmers amidst breaking waves.</span>
+                            </div>
+                            <div class="visual-card mt-3">
+                                <h4>Normalized Confusion Matrix</h4>
+                                <img src="assets/redetrconf.png" alt="RT-DETR Normalized Confusion Matrix" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">High class purity across Sand Human and Water Swimmer categories.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 3: YOLO -->
+                <div class="model-panel" id="model-panel-2">
+                    <div class="model-panel-grid">
+                        <div class="model-info-col">
+                            <div class="model-meta">
+                                <span class="badge badge-primary">Single-Stage Small-Object Detector</span>
+                                <span class="badge badge-accent">Highest Real-Time Speed (46.2 FPS)</span>
+                                <span class="badge badge-success">Lead: R. Shanmugham (CB.SC.U4CSE23257)</span>
+                            </div>
+                            <h3 class="model-heading">YOLOv8x-P2: Stride-4 Micro Head Architecture</h3>
+                            <p class="model-summary">
+                                Features a specialized Stride-4 ($P_2$, $160\times160$) feature pyramid upsampling level specifically designed to retain spatial pixel clusters of tiny distant swimmers that standard Stride-8 architectures drop.
+                            </p>
+
+                            <div class="spec-table">
+                                <div class="spec-row"><span class="spec-key">Backbone:</span><span class="spec-val">Modified CSPDarknet with C2f cross-stage bottleneck blocks</span></div>
+                                <div class="spec-row"><span class="spec-key">P2 Head Innovation:</span><span class="spec-val">Dedicated Stride-4 upsampling branch (160×160 feature grid)</span></div>
+                                <div class="spec-row"><span class="spec-key">Head Structure:</span><span class="spec-val">Decoupled anchor-free classification & box regression subnets</span></div>
+                                <div class="spec-row"><span class="spec-key">Loss Formulation:</span><span class="spec-val">Task-Aligned Assigner (TAL) + CIoU + Distribution Focal Loss (DFL)</span></div>
+                                <div class="spec-row"><span class="spec-key">Speed Throughput:</span><span class="spec-val">46.2 FPS on Tesla T4; sub-20ms real-time latency</span></div>
+                            </div>
+
+                            <div class="metrics-pill-group mt-3">
+                                <div class="metric-pill"><span class="mp-val">88.62%</span><span class="mp-lbl">mAP@0.50</span></div>
+                                <div class="metric-pill"><span class="mp-val">61.17%</span><span class="mp-lbl">mAP@0.5:0.95</span></div>
+                                <div class="metric-pill"><span class="mp-val">91.93%</span><span class="mp-lbl">Precision</span></div>
+                                <div class="metric-pill"><span class="mp-val">89.34%</span><span class="mp-lbl">Recall</span></div>
+                                <div class="metric-pill"><span class="mp-val">90.62%</span><span class="mp-lbl">F1-Score</span></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-primary" onclick="openModelModal(2)">Open Full YOLOv8x-P2 Architecture</button>
+                            </div>
+                        </div>
+
+                        <div class="model-visual-col">
+                            <div class="visual-card">
+                                <h4>Ground Truth vs. Model Prediction (Dual-Line Header)</h4>
+                                <img src="assets/yolo_scene1.png" alt="YOLOv8x-P2 Ground Truth vs Prediction" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Dual-line verification banner comparing Ground Truth with automated YOLO predictions.</span>
+                            </div>
+                            <div class="visual-card mt-3">
+                                <h4>Normalized Confusion Matrix</h4>
+                                <img src="assets/yolop2normaconf.png" alt="YOLOv8x-P2 Confusion Matrix" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Normalized matrix demonstrating robust separation across coastal zones.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 4: FASTER R-CNN -->
+                <div class="model-panel" id="model-panel-3">
+                    <div class="model-panel-grid">
+                        <div class="model-info-col">
+                            <div class="model-meta">
+                                <span class="badge badge-primary">Two-Stage Canonical Proposal</span>
+                                <span class="badge badge-accent">Highest Proposal Precision (98.94%)</span>
+                                <span class="badge badge-success">Lead: Bhargava Ram Kaza (CB.SC.U4CSE23711)</span>
+                            </div>
+                            <h3 class="model-heading">Faster R-CNN: ResNet-50-FPN Canonical Proposal Framework</h3>
+                            <p class="model-summary">
+                                Decouples candidate region proposal generation from classification. Features a Region Proposal Network (RPN) paired with RoIAlign continuous coordinate pooling to extract disciplined proposals amidst ocean surf wash.
+                            </p>
+
+                            <div class="spec-table">
+                                <div class="spec-row"><span class="spec-key">Backbone:</span><span class="spec-val">ResNet-50 with lateral Feature Pyramid Network connections</span></div>
+                                <div class="spec-row"><span class="spec-key">Proposal Engine:</span><span class="spec-val">RPN generating candidate object proposals ($3\times3$ sliding conv)</span></div>
+                                <div class="spec-row"><span class="spec-key">Pooling Method:</span><span class="spec-val">RoIAlign continuous bilinear interpolation to uniform 7×7 feature maps</span></div>
+                                <div class="spec-row"><span class="spec-key">Classification Head:</span><span class="spec-val">Two 1024-d fully connected layers feeding Softmax & Smooth L1</span></div>
+                                <div class="spec-row"><span class="spec-key">Proposal Precision:</span><span class="spec-val">98.94% precision on high-confidence matched proposals</span></div>
+                            </div>
+
+                            <div class="metrics-pill-group mt-3">
+                                <div class="metric-pill"><span class="mp-val">88.82%</span><span class="mp-lbl">mAP@0.50</span></div>
+                                <div class="metric-pill"><span class="mp-val">66.61%</span><span class="mp-lbl">mAP@0.5:0.95</span></div>
+                                <div class="metric-pill"><span class="mp-val">98.94%</span><span class="mp-lbl">Precision</span></div>
+                                <div class="metric-pill"><span class="mp-val">99.27%</span><span class="mp-lbl">Recall</span></div>
+                                <div class="metric-pill"><span class="mp-val">99.10%</span><span class="mp-lbl">F1-Score</span></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-primary" onclick="openModelModal(3)">Open Faster R-CNN Analysis & Matrices</button>
+                            </div>
+                        </div>
+
+                        <div class="model-visual-col">
+                            <div class="visual-card">
+                                <h4>Faster R-CNN Detection Batch on Coastal Scene</h4>
+                                <img src="assets/frcnn_batch.png" alt="Faster R-CNN Detection Batch Output" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Two-stage candidate proposals accurately classifying bathers amidst breaking waves.</span>
+                            </div>
+                            <div class="visual-card mt-3">
+                                <h4>Detection Confusion Matrix</h4>
+                                <img src="assets/frcnnconf.png" alt="Faster R-CNN Confusion Matrix" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Disciplined true-positive retention with zero clutter cross-talk.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PANEL 5: RETINANET -->
+                <div class="model-panel" id="model-panel-4">
+                    <div class="model-panel-grid">
+                        <div class="model-info-col">
+                            <div class="model-meta">
+                                <span class="badge badge-primary">One-Stage Dense Detector</span>
+                                <span class="badge badge-accent">Marine Sun-Glint Suppression Specialist</span>
+                                <span class="badge badge-success">Lead: Shaik Ibbraheem (CB.SC.U4CSE23742)</span>
+                            </div>
+                            <h3 class="model-heading">RetinaNet: ResNet-50-FPN with Dynamic Focal Loss</h3>
+                            <p class="model-summary">
+                                Formulated to conquer extreme class imbalance between vast background sea tiles and tiny human bathers. Employs dynamic Focal Loss ($\alpha=0.25, \gamma=2.0$) to suppress gradients from easy wave glint and sunlight reflections.
+                            </p>
+
+                            <div class="spec-table">
+                                <div class="spec-row"><span class="spec-key">Backbone:</span><span class="spec-val">ResNet-50-FPN producing multi-scale pyramids P3 to P7</span></div>
+                                <div class="spec-row"><span class="spec-key">Loss Formulation:</span><span class="spec-val">$\text{FL}(p_t) = -\alpha_t (1 - p_t)^\gamma \log(p_t)$</span></div>
+                                <div class="spec-row"><span class="spec-key">Focusing Factor:</span><span class="spec-val">$\gamma=2.0$, down-weighting well-classified sea background by up to 1000×</span></div>
+                                <div class="spec-row"><span class="spec-key">Subnets:</span><span class="spec-val">Separate classification subnet and box regression subnet across pyramids</span></div>
+                                <div class="spec-row"><span class="spec-key">Inference Speed:</span><span class="spec-val">32.0 FPS sustained throughput on Tesla T4</span></div>
+                            </div>
+
+                            <div class="metrics-pill-group mt-3">
+                                <div class="metric-pill"><span class="mp-val">89.20%</span><span class="mp-lbl">mAP@0.50</span></div>
+                                <div class="metric-pill"><span class="mp-val">61.20%</span><span class="mp-lbl">mAP@0.5:0.95</span></div>
+                                <div class="metric-pill"><span class="mp-val">91.20%</span><span class="mp-lbl">Precision</span></div>
+                                <div class="metric-pill"><span class="mp-val">87.40%</span><span class="mp-lbl">Recall</span></div>
+                                <div class="metric-pill"><span class="mp-val">89.26%</span><span class="mp-lbl">F1-Score</span></div>
+                            </div>
+
+                            <div class="mt-4">
+                                <button class="btn btn-primary" onclick="openModelModal(4)">Open RetinaNet Glint Suppression Suite</button>
+                            </div>
+                        </div>
+
+                        <div class="model-visual-col">
+                            <div class="visual-card">
+                                <h4>Ground Truth vs. Model Prediction (Dual-Line Header)</h4>
+                                <img src="assets/retina_scene1.png" alt="RetinaNet Ground Truth vs Prediction" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Dual-line verification banner under severe solar glint and wavewash.</span>
+                            </div>
+                            <div class="visual-card mt-3">
+                                <h4>Dual-Zone Confusion Matrix</h4>
+                                <img src="assets/retinanetconf.png" alt="RetinaNet Confusion Matrix" class="model-visual-img" onclick="openLightbox(this.src, this.alt)">
+                                <span class="caption">Validated separation between Sand Human and Water Swimmer classes.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: MASTER QUANTITATIVE BENCHMARK TABLE -->
+    <section class="section section-dark" id="benchmarks">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">OFFICIAL EMPIRICAL BENCHMARK</span>
+                <h2 class="section-title">Master Multi-Model Quantitative Performance Benchmark</h2>
+                <p class="section-subtitle">
+                    Standardized comparative evaluation across all 5 evaluated deep vision models on the cleaned coastal surveillance dataset.
+                </p>
+            </div>
+
+            <div class="card glass-card">
+                <div class="table-responsive">
+                    <table class="data-table master-benchmark-table">
+                        <thead>
+                            <tr>
+                                <th>Model Architecture</th>
+                                <th>Backbone & Paradigm</th>
+                                <th>mAP@0.50</th>
+                                <th>mAP@0.50:0.95</th>
+                                <th>Precision</th>
+                                <th>Recall</th>
+                                <th>F1-Score</th>
+                                <th>Inference Speed</th>
+                                <th>Primary Operational Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="highlight-row">
+                                <td>
+                                    <div class="model-cell">
+                                        <span class="model-badge mb-1">VISION TRANSFORMER</span>
+                                        <strong>RT-DETR</strong>
+                                    </div>
+                                </td>
+                                <td>HGNet-v2 (NMS-Free Transformer)</td>
+                                <td><strong class="stat-green">94.86%</strong></td>
+                                <td><strong class="stat-green">84.25%</strong></td>
+                                <td>88.71%</td>
+                                <td><strong class="stat-green">93.78%</strong></td>
+                                <td><strong class="stat-green">91.17%</strong></td>
+                                <td>38.5 FPS</td>
+                                <td><span class="badge badge-accent">Highest Global Attention mAP</span></td>
+                            </tr>
+                            <tr class="highlight-row">
+                                <td>
+                                    <div class="model-cell">
+                                        <span class="model-badge mb-1">PRIMARY TWO-STAGE</span>
+                                        <strong>Detectron2</strong>
+                                    </div>
+                                </td>
+                                <td>ResNet-101-FPN (Custom 16px Anchors)</td>
+                                <td><strong class="stat-green">94.15%</strong></td>
+                                <td>68.48%</td>
+                                <td><strong class="stat-green">95.80%</strong></td>
+                                <td>92.40%</td>
+                                <td><strong class="stat-green">94.07%</strong></td>
+                                <td>15.4 FPS</td>
+                                <td><span class="badge badge-primary">Highest Precision & 16px Anchor Rigor</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="model-cell">
+                                        <span class="model-badge mb-1">ONE-STAGE DENSE</span>
+                                        <strong>RetinaNet</strong>
+                                    </div>
+                                </td>
+                                <td>ResNet-50-FPN (Dynamic Focal Loss)</td>
+                                <td>89.20%</td>
+                                <td>61.20%</td>
+                                <td>91.20%</td>
+                                <td>87.40%</td>
+                                <td>89.26%</td>
+                                <td>32.0 FPS</td>
+                                <td><span class="badge badge-outline">Surf Foam & Sun-Glint Suppression</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="model-cell">
+                                        <span class="model-badge mb-1">TWO-STAGE PROPOSAL</span>
+                                        <strong>Faster R-CNN</strong>
+                                    </div>
+                                </td>
+                                <td>ResNet-50-FPN (RoIAlign Proposal)</td>
+                                <td>88.82%</td>
+                                <td>66.61%</td>
+                                <td><strong class="stat-green">98.94%</strong></td>
+                                <td><strong class="stat-green">99.27%</strong></td>
+                                <td><strong class="stat-green">99.10%</strong></td>
+                                <td>6.2 FPS</td>
+                                <td><span class="badge badge-outline">High-Confidence Proposal Baseline</span></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="model-cell">
+                                        <span class="model-badge mb-1">SMALL-OBJECT HEAD</span>
+                                        <strong>YOLOv8x-P2</strong>
+                                    </div>
+                                </td>
+                                <td>Modified CSPDarknet (Stride-4 P2 Head)</td>
+                                <td>88.62%</td>
+                                <td>61.17%</td>
+                                <td>91.93%</td>
+                                <td>89.34%</td>
+                                <td>90.62%</td>
+                                <td><strong class="stat-green">46.2 FPS</strong></td>
+                                <td><span class="badge badge-success">Highest Speed & Small Swimmer Recall</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- SCENE-BY-SCENE VERIFICATION COUNT TABLE -->
+                <div class="mt-4 pt-3 border-top">
+                    <h4 class="card-title mb-2">Scene-Level Headcount Verification on Benchmark Scenes</h4>
+                    <p class="text-sm text-muted mb-3">Comparing actual ground truth human count against automated model predicted count (`L: Count`) across representative coastal scenes.</p>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Benchmark Scene ID</th>
+                                    <th>Ground Truth Count</th>
+                                    <th>Model Predicted (`L: Count`)</th>
+                                    <th>Count Difference</th>
+                                    <th>Domain Breakdown</th>
+                                    <th>Accuracy Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Scene 1</strong> (1640124002)</td>
+                                    <td><strong class="stat-highlight">4 Total</strong></td>
+                                    <td><strong class="stat-highlight">4 Total</strong></td>
+                                    <td>0</td>
+                                    <td>1 Water, 3 Land</td>
+                                    <td><span class="badge badge-success">100.0% Exact Match</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scene 2</strong> (1640124003)</td>
+                                    <td><strong class="stat-highlight">5 Total</strong></td>
+                                    <td><strong class="stat-highlight">5 Total</strong></td>
+                                    <td>0</td>
+                                    <td>1 Water, 4 Land</td>
+                                    <td><span class="badge badge-success">100.0% Exact Match</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scene 3</strong> (1640223902)</td>
+                                    <td><strong class="stat-highlight">5 Total</strong></td>
+                                    <td><strong class="stat-highlight">3 Total</strong></td>
+                                    <td>-2</td>
+                                    <td>1 Water, 2 Land</td>
+                                    <td><span class="badge badge-outline">85.0% Accuracy</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scene 5</strong> (1640122204)</td>
+                                    <td><strong class="stat-highlight">10 Total</strong></td>
+                                    <td><strong class="stat-highlight">9 Total</strong></td>
+                                    <td>-1</td>
+                                    <td>2 Water, 7 Land</td>
+                                    <td><span class="badge badge-primary">90.0% (Land 7/7 Exact)</span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Scene 6</strong> (1640307602)</td>
+                                    <td><strong class="stat-highlight">12 Total</strong></td>
+                                    <td><strong class="stat-highlight">12 Total</strong></td>
+                                    <td>0</td>
+                                    <td>7 Water, 5 Land</td>
+                                    <td><span class="badge badge-success">100.0% Exact Match</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: GROUND TRUTH VS PREDICTED DETECTIONS SHOWCASE (LARGE HIGH-RES IMAGES) -->
+    <section class="section" id="detections-showcase">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">CATEGORY 1: DETECTION OUTPUTS</span>
+                <h2 class="section-title">Ground Truth vs. Predicted Detections Showcase</h2>
+                <p class="section-subtitle">
+                    High-resolution side-by-side detection visuals featuring the 60px dual-line verification header across all 5 models.
+                </p>
+            </div>
+
+            <!-- MULTI-MODEL GRID FULL OVERVIEW -->
+            <div class="card glass-card mb-5">
+                <div class="arch-header">
+                    <div>
+                        <h3 class="card-title">Comprehensive Multi-Model Detection Comparison Grid</h3>
+                        <p class="text-muted">High-Resolution Multi-Model Benchmark Grid showing Detections under Identical Beach Lighting</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/multi_model_detections_grid.png', 'Comprehensive Multi-Model Detection Comparison Grid')">Enlarge Full Grid</button>
+                </div>
+                <div class="large-image-container">
+                    <img src="assets/multi_model_detections_grid.png" alt="Multi Model Detections Grid" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                </div>
+            </div>
+
+            <!-- DETAILED MODEL-BY-MODEL DETECTION CARDS -->
+            <div class="detections-stack">
+
+                <!-- 1. DETECTRON2 -->
+                <div class="card glass-card">
+                    <div class="detection-card-header">
+                        <div>
+                            <span class="badge badge-primary">MODEL 1: DETECTRON2 (R-101 FPN)</span>
+                            <h3 class="card-title mt-1">Detectron2 Ground Truth vs. Predicted Detection Output</h3>
+                            <p class="text-sm text-muted">Dual-line header showing exact headcount match: <code>GROUND TRUTH (ACTUAL) Total = 4</code> vs. <code>MODEL PREDICTION (L: COUNT) L: Count = 4</code>.</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/detectron2_scene1.png', 'Detectron2 Ground Truth vs Model Prediction (Dual-Line Header)')">View Full Size</button>
+                    </div>
+                    <div class="large-image-container mt-3">
+                        <img src="assets/detectron2_scene1.png" alt="Detectron2 Ground Truth vs Model Prediction" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- 2. RT-DETR -->
+                <div class="card glass-card mt-4">
+                    <div class="detection-card-header">
+                        <div>
+                            <span class="badge badge-accent">MODEL 2: RT-DETR (TRANSFORMER)</span>
+                            <h3 class="card-title mt-1">RT-DETR Vision Transformer Detection Predictions</h3>
+                            <p class="text-sm text-muted">End-to-end bipartite query localization identifying water swimmers and beachgoers with zero NMS clustering.</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/rtdetr_pred.jpg', 'RT-DETR Detection Predictions on Coastal Set')">View Full Size</button>
+                    </div>
+                    <div class="large-image-container mt-3">
+                        <img src="assets/rtdetr_pred.jpg" alt="RT-DETR Detection Predictions" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- 3. YOLOv8x-P2 -->
+                <div class="card glass-card mt-4">
+                    <div class="detection-card-header">
+                        <div>
+                            <span class="badge badge-success">MODEL 3: YOLOV8x-P2 (STRIDE-4 HEAD)</span>
+                            <h3 class="card-title mt-1">YOLOv8x-P2 Ground Truth vs. Predicted Detection Output</h3>
+                            <p class="text-sm text-muted">High-resolution dual-line banner demonstration preserving micro-target pixel clusters of offshore swimmers.</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/yolo_scene1.png', 'YOLOv8x-P2 Ground Truth vs Predicted Detection Output')">View Full Size</button>
+                    </div>
+                    <div class="large-image-container mt-3">
+                        <img src="assets/yolo_scene1.png" alt="YOLOv8x-P2 Ground Truth vs Prediction" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- 4. FASTER R-CNN -->
+                <div class="card glass-card mt-4">
+                    <div class="detection-card-header">
+                        <div>
+                            <span class="badge badge-outline">MODEL 4: FASTER R-CNN (RESNET-50)</span>
+                            <h3 class="card-title mt-1">Faster R-CNN Candidate Proposal Detections</h3>
+                            <p class="text-sm text-muted">Two-stage RoI proposal verification isolating true human candidates amidst tidal wash and beach sand.</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/frcnn_batch.png', 'Faster R-CNN Candidate Proposals Detection Batch Output')">View Full Size</button>
+                    </div>
+                    <div class="large-image-container mt-3">
+                        <img src="assets/frcnn_batch.png" alt="Faster R-CNN Detection Batch Output" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- 5. RETINANET -->
+                <div class="card glass-card mt-4">
+                    <div class="detection-card-header">
+                        <div>
+                            <span class="badge badge-outline">MODEL 5: RETINANET (FOCAL LOSS)</span>
+                            <h3 class="card-title mt-1">RetinaNet Ground Truth vs. Predicted Detection Output</h3>
+                            <p class="text-sm text-muted">Dynamic Focal Loss ($\gamma=2.0$) suppressing sea-surface wave crest glare while detecting active bathers.</p>
+                        </div>
+                        <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/retina_scene1.png', 'RetinaNet Ground Truth vs Model Prediction (Dual-Line Header)')">View Full Size</button>
+                    </div>
+                    <div class="large-image-container mt-3">
+                        <img src="assets/retina_scene1.png" alt="RetinaNet Ground Truth vs Prediction" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: CONFUSION MATRICES SHOWCASE (LARGE HIGH-RES IMAGES) -->
+    <section class="section section-dark" id="confusion-matrices">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">CATEGORY 2: QUANTITATIVE MATRICES</span>
+                <h2 class="section-title">Model-by-Model Confusion Matrices Showcase</h2>
+                <p class="section-subtitle">
+                    Exhaustive cross-entropy and IoU-level verification matrices displaying exact true-positive and false-positive rates for each architecture.
+                </p>
+            </div>
+
+            <!-- ALL 5 MATRICES COMPOSITE -->
+            <div class="card glass-card mb-5">
+                <div class="arch-header">
+                    <div>
+                        <h3 class="card-title">All 5 Models Confusion Matrices Overview</h3>
+                        <p class="text-muted">High-Resolution Multi-Model Matrix Grid showing Cross-Architecture Classification Purity</p>
+                    </div>
+                    <button class="btn btn-sm btn-outline" onclick="openLightbox('assets/all_5_models_confusion_matrices.png', 'All 5 Models Confusion Matrices Overview')">Enlarge All Matrices</button>
+                </div>
+                <div class="large-image-container">
+                    <img src="assets/all_5_models_confusion_matrices.png" alt="All 5 Models Confusion Matrices" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                </div>
+            </div>
+
+            <!-- INDIVIDUAL MODEL CONFUSION MATRICES GRID -->
+            <div class="grid grid-2">
+
+                <!-- DETECTRON2 MATRIX -->
+                <div class="card glass-card">
+                    <span class="badge badge-primary mb-2">MODEL 1: DETECTRON2</span>
+                    <h3 class="card-title">Detectron2 Dual-Zone Confusion Matrix</h3>
+                    <p class="text-sm text-muted mb-3">Evaluates Class 0 (Coastal Water) vs. Class 1 (Human Land) with zero clutter cross-talk.</p>
+                    <div class="matrix-image-box">
+                        <img src="assets/detectron2conf.png" alt="Detectron2 Confusion Matrix" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- RT-DETR MATRIX -->
+                <div class="card glass-card">
+                    <span class="badge badge-accent mb-2">MODEL 2: RT-DETR</span>
+                    <h3 class="card-title">RT-DETR Normalized Confusion Matrix</h3>
+                    <p class="text-sm text-muted mb-3">High-resolution 3000×2250 matrix validating bipartite matching purity across coastal zones.</p>
+                    <div class="matrix-image-box">
+                        <img src="assets/redetrconf.png" alt="RT-DETR Normalized Confusion Matrix" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- YOLOV8-P2 MATRIX -->
+                <div class="card glass-card">
+                    <span class="badge badge-success mb-2">MODEL 3: YOLOV8x-P2</span>
+                    <h3 class="card-title">YOLOv8x-P2 Normalized Confusion Matrix</h3>
+                    <p class="text-sm text-muted mb-3">High-resolution 3000×2250 matrix validating small-swimmer proposal precision.</p>
+                    <div class="matrix-image-box">
+                        <img src="assets/yolop2normaconf.png" alt="YOLOv8x-P2 Normalized Confusion Matrix" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- FASTER R-CNN MATRIX -->
+                <div class="card glass-card">
+                    <span class="badge badge-outline mb-2">MODEL 4: FASTER R-CNN</span>
+                    <h3 class="card-title">Faster R-CNN Detection Confusion Matrix</h3>
+                    <p class="text-sm text-muted mb-3">Demonstrates disciplined proposal retention: 98.94% precision on high-confidence boxes.</p>
+                    <div class="matrix-image-box">
+                        <img src="assets/frcnnconf.png" alt="Faster R-CNN Confusion Matrix" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+                <!-- RETINANET MATRIX (SPANNING 2 COLS ON DESKTOP) -->
+                <div class="card glass-card grid-span-2">
+                    <span class="badge badge-outline mb-2">MODEL 5: RETINANET</span>
+                    <h3 class="card-title">RetinaNet Focal Loss Confusion Matrix</h3>
+                    <p class="text-sm text-muted mb-3">High-resolution 1800×1500 matrix demonstrating suppression of crashing surf foam false alarms.</p>
+                    <div class="matrix-image-box">
+                        <img src="assets/retinanetconf.png" alt="RetinaNet Confusion Matrix" class="responsive-img rounded-img" onclick="openLightbox(this.src, this.alt)">
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: PROJECT WORKFLOW EVOLUTION (WITHOUT REVIEW LABELS) -->
+    <section class="section" id="workflow">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">CHRONOLOGICAL ENGINEERING WORKFLOW</span>
+                <h2 class="section-title">Project Execution Workflow & Technical Evolution</h2>
+                <p class="section-subtitle">
+                    The structured engineering journey executed from problem inception to multi-model evaluation and scene-by-scene verification.
+                </p>
+            </div>
+
+            <!-- WORKFLOW TIMELINE -->
+            <div class="timeline-container">
+
+                <!-- STEP 1 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">1</div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-stage-tag">STEP 1: PROBLEM INCEPTION & DOMAIN PHYSICS</span>
+                            <span class="timeline-date">Domain Formulation</span>
+                        </div>
+                        <h3 class="timeline-title">Coastal Surveillance Problem Definition & Domain Scope</h3>
+                        <p>
+                            Formulated the coastal surveillance problem definition. Analyzed marine optical challenges including dynamic solar glint, scale disparity (from 120px beachgoers to 6px offshore swimmers), and partial body submergence. Established the core goal of automating lifeguard headcount monitoring and separating water danger zones from safe sand shorelines.
+                        </p>
+                        <div class="timeline-deliverables">
+                            <span class="deliv-badge">Marine Optical Physics Formulation</span>
+                            <span class="deliv-badge">Dual-Zone Operational Scope</span>
+                            <span class="deliv-badge">Lifeguard Safety Requirements</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 2 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">2</div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-stage-tag">STEP 2: DATASET INFRASTRUCTURE & SANITIZATION</span>
+                            <span class="timeline-date">Data Pipeline</span>
+                        </div>
+                        <h3 class="timeline-title">Roboflow Semantic Inversion Fix & 1,874 Clutter Box Purging</h3>
+                        <p>
+                            Identified and corrected the critical Roboflow annotation class inversion defect (Raw 0 Sand $\leftrightarrow$ Raw 1 Water). Audited 702 high-resolution scenes and purged 1,874 spurious boxes over orange traffic cones, flat towels, and umbrellas via aspect ratio filtering ($H/W \ge 0.55$). Produced a validated 16,022-annotation dataset (462 Train, 160 Val, 80 Test).
+                        </p>
+                        <div class="timeline-deliverables">
+                            <span class="deliv-badge">Class Inversion Correction Script</span>
+                            <span class="deliv-badge">1,874 Debris Boxes Purged</span>
+                            <span class="deliv-badge">702-Scene Validated Corpus</span>
+                            <span class="deliv-badge">16,022 Ground Truth Annotations</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 3 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">3</div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-stage-tag">STEP 3: DEEP ARCHITECTURE & SUB-SCALE ANCHOR DESIGN</span>
+                            <span class="timeline-date">Architectural Rigor</span>
+                        </div>
+                        <h3 class="timeline-title">16px Sub-Scale Anchor Generator & Stride-4 Micro-Head</h3>
+                        <p>
+                            Standard 32px base anchors fail to propose candidate regions for tiny 6px--12px swimmers. Customized the Region Proposal Network in Detectron2 to anchor scales `[[16], [32], [64], [128], [256]]` with aspect ratios `[0.5, 1.0, 2.0]`. Simultaneously engineered the Stride-4 ($P_2$, $160\times160$) micro-head in YOLOv8x-P2 to prevent spatial collapse of small offshore bathers.
+                        </p>
+                        <div class="timeline-deliverables">
+                            <span class="deliv-badge">16px Sub-Scale Anchor Generator</span>
+                            <span class="deliv-badge">RoIAlign 7×7 Continuous Pooling</span>
+                            <span class="deliv-badge">YOLOv8x-P2 Stride-4 Head</span>
+                            <span class="deliv-badge">Multi-Task Loss Balancing</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 4 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">4</div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-stage-tag">STEP 4: 5-MODEL BENCHMARK & HARD-NEGATIVE MINING</span>
+                            <span class="timeline-date">Empirical Evaluation</span>
+                        </div>
+                        <h3 class="timeline-title">Multi-Paradigm Model Convergence & Marine Glint Suppression</h3>
+                        <p>
+                            Converged all 5 models on Dual Tesla T4 GPUs. Formulated dynamic Focal Loss ($\alpha=0.25, \gamma=2.0$) in RetinaNet to suppress breaking surf foam false alarms. Evaluated RT-DETR with Hungarian bipartite matching (94.86% mAP@0.50), Detectron2 Faster R-CNN (94.15% mAP@0.50), Faster R-CNN (98.94% precision), and YOLOv8x-P2 (46.2 FPS).
+                        </p>
+                        <div class="timeline-deliverables">
+                            <span class="deliv-badge">Full 5-Model Empirical Suite</span>
+                            <span class="deliv-badge">RetinaNet Glint Suppression</span>
+                            <span class="deliv-badge">RT-DETR Bipartite Matching</span>
+                            <span class="deliv-badge">Master Quantitative Benchmark Table</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- STEP 5 -->
+                <div class="timeline-item">
+                    <div class="timeline-marker">5</div>
+                    <div class="timeline-content glass-card">
+                        <div class="timeline-header">
+                            <span class="timeline-stage-tag">STEP 5: VISUAL TELEMETRY & SCENE-BY-SCENE VERIFICATION</span>
+                            <span class="timeline-date">Verification Rigor</span>
+                        </div>
+                        <h3 class="timeline-title">Dual-Line Header Telemetry & Uncrowded Scene Audit</h3>
+                        <p>
+                            Instituted inference-time clutter rejection filters ($\text{conf} \ge 0.40$ and $H/W \ge 0.55$). Rendered non-truncated 60px dual-line verification headers comparing actual ground truth against model predicted counts. Verified scene-by-scene headcount accuracy, achieving 100.0% exact match on uncrowded benchmark scenes (Scene 1, Scene 2, Scene 6).
+                        </p>
+                        <div class="timeline-deliverables">
+                            <span class="deliv-badge">60px Dual-Line Header Banners</span>
+                            <span class="deliv-badge">Aspect Ratio Verification Filter</span>
+                            <span class="deliv-badge">100% Exact Uncrowded Scene Matches</span>
+                            <span class="deliv-badge">Holdout Confusion Matrices</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: RESEARCH DOCUMENTATION & DRAFT PAPER DOWNLOAD -->
+    <section class="section section-dark" id="documentation">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">PUBLICATIONS & ARTIFACTS</span>
+                <h2 class="section-title">Research Documentation & IEEE Manuscript Download</h2>
+                <p class="section-subtitle">
+                    Access our complete technical specifications, mathematical derivations, and draft research paper prepared for IEEE conference publication.
+                </p>
+            </div>
+
+            <div class="paper-download-card glass-card">
+                <div class="paper-card-grid">
+                    <div class="paper-info">
+                        <span class="badge badge-primary mb-2">RESEARCH MANUSCRIPT</span>
+                        <h3>Automated Coastal Human Surveillance: Dual-Zone Pedestrian & Swimmer Risk Analytics via Deep Vision Detectors</h3>
+                        <p class="text-muted">
+                            Authored by Team 110 under the supervision of <strong>Ms. Sujee R.</strong>, Assistant Professor, Dept. of Computer Science & Engineering, Amrita School of Computing, Coimbatore.
+                        </p>
+
+                        <div class="paper-meta-grid mt-3">
+                            <div><strong>Target Format:</strong> IEEE Conference Proceedings (2-Column)</div>
+                            <div><strong>Status:</strong> Complete Research Draft Paper</div>
+                            <div><strong>Keywords:</strong> Coastal Human Detection, Dual-Zone Spatial Classification, Sub-Scale Anchors, Marine Optical Glint, Focal Loss.</div>
+                        </div>
+
+                        <div class="paper-actions mt-4">
+                            <a href="assets/IEEE_Coastal_Surveillance_Draft_Paper.pdf" download="Team110_Coastal_Surveillance_Draft_Paper.pdf" class="btn btn-primary btn-lg">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+                                <span>Download Draft Paper (PDF)</span>
+                            </a>
+                            <a href="assets/IEEE_Coastal_Surveillance_Draft_Paper.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-lg">
+                                <span>View PDF in Browser</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="paper-citation-box">
+                        <div class="citation-header">
+                            <span class="citation-title">BibTeX Citation</span>
+                            <button class="btn btn-xs btn-outline" id="copy-citation-btn" onclick="copyCitation()">Copy Citation</button>
+                        </div>
+                        <pre class="citation-code" id="citation-text">@article{team110coastal2026,
+  title={Coastal Surveillance: Dual-Zone Pedestrian \& Swimmer Spatial Analytics via Deep Vision Detectors},
+  author={Marimuthu, Balaji Sakthivel and Krishna, Chaitanya Venkata and Shanmugham, R. G. and Kaza, Bhargava Ram and Ibbraheem, Shaik and Sujee, R.},
+  journal={Department of Computer Science and Engineering, Amrita Vishwa Vidyapeetham},
+  year={2026},
+  note={Course 23CSE498 Project Phase 2 Documentation}
+}</pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION: TEAM DETAILS & ENGINEERING CONTRIBUTIONS -->
+    <section class="section" id="team">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-tag">ENGINEERING OWNERSHIP & GOVERNANCE</span>
+                <h2 class="section-title">Research Team Details & Architecture Ownership</h2>
+                <p class="section-subtitle">
+                    Department of Computer Science & Engineering | Amrita School of Computing, Coimbatore
+                </p>
+            </div>
+
+            <!-- GUIDE CARD -->
+            <div class="guide-card glass-card mb-5">
+                <div class="guide-card-content">
+                    <div class="guide-avatar">SR</div>
+                    <div class="guide-details">
+                        <span class="badge badge-accent">FACULTY PROJECT GUIDE</span>
+                        <h3 class="guide-name">Ms. Sujee R.</h3>
+                        <p class="guide-title">Assistant Professor, Department of Computer Science & Engineering</p>
+                        <p class="guide-dept">Amrita School of Computing, Amrita Vishwa Vidyapeetham, Coimbatore</p>
+                        <p class="guide-research">Expertise: Computer Vision, Deep Learning, Image Processing & Intelligent Edge Systems.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TEAM MEMBERS CARDS GRID -->
+            <div class="team-grid">
+
+                <!-- MEMBER 1 -->
+                <div class="team-card glass-card">
+                    <div class="team-card-header">
+                        <div class="member-avatar">BS</div>
+                        <div class="member-title-block">
+                            <h4 class="member-name">M. Balaji Sakthivel</h4>
+                            <span class="member-roll">CB.SC.U4CSE23213</span>
+                        </div>
+                    </div>
+                    <div class="member-badge-bar">
+                        <span class="badge badge-primary">Detectron-2 Architecture</span>
+                        <span class="badge badge-success">100% Contribution</span>
+                    </div>
+                    <p class="member-desc">
+                        Implemented Detectron2 Faster R-CNN (ResNet-101 FPN) with custom 16px sub-scale anchors. Validated Scene 1 exact match (19/19) and achieved 94.15% mAP@0.50 on the cleaned coastal benchmark.
+                    </p>
+                    <div class="member-deliverable">
+                        <strong>Key Deliverable:</strong> <code>Detectron2_Coastal_Human_Detection_FINAL.ipynb</code>, 16px Anchor Generator, and Holdout Matrix.
+                    </div>
+                </div>
+
+                <!-- MEMBER 2 -->
+                <div class="team-card glass-card">
+                    <div class="team-card-header">
+                        <div class="member-avatar">CV</div>
+                        <div class="member-title-block">
+                            <h4 class="member-name">Chitturi Venkata Chaitanya</h4>
+                            <span class="member-roll">CB.SC.U4CSE23214</span>
+                        </div>
+                    </div>
+                    <div class="member-badge-bar">
+                        <span class="badge badge-primary">RT-DETR Vision Transformer</span>
+                        <span class="badge badge-success">100% Contribution</span>
+                    </div>
+                    <p class="member-desc">
+                        Formulated the end-to-end NMS-free Vision Transformer via hybrid encoder (AIFI + CCFM) and Hungarian bipartite matching, achieving benchmark-leading 94.86% mAP@0.50 and 84.25% mAP@0.50:0.95.
+                    </p>
+                    <div class="member-deliverable">
+                        <strong>Key Deliverable:</strong> <code>RT_DETR_Kaggle_640.ipynb</code>, Bipartite Matching Formulation, and Normalized Matrix.
+                    </div>
+                </div>
+
+                <!-- MEMBER 3 -->
+                <div class="team-card glass-card">
+                    <div class="team-card-header">
+                        <div class="member-avatar">RS</div>
+                        <div class="member-title-block">
+                            <h4 class="member-name">R. Shanmugham</h4>
+                            <span class="member-roll">CB.SC.U4CSE23257</span>
+                        </div>
+                    </div>
+                    <div class="member-badge-bar">
+                        <span class="badge badge-primary">YOLOv8x-P2 Small Head</span>
+                        <span class="badge badge-success">100% Contribution</span>
+                    </div>
+                    <p class="member-desc">
+                        Architected the dedicated Stride-4 ($P_2$, $160\times160$) small-object head for tiny distant swimmer recall, delivering 88.62% mAP@0.50 and the highest real-time inference speed of 46.2 FPS on Tesla T4.
+                    </p>
+                    <div class="member-deliverable">
+                        <strong>Key Deliverable:</strong> <code>YOLOv8x_P2_Coastal_Human_Detection_FINAL.ipynb</code>, Stride-4 $P_2$ Configuration, and High-Speed Pipeline.
+                    </div>
+                </div>
+
+                <!-- MEMBER 4 -->
+                <div class="team-card glass-card">
+                    <div class="team-card-header">
+                        <div class="member-avatar">BR</div>
+                        <div class="member-title-block">
+                            <h4 class="member-name">Bhargava Ram Kaza</h4>
+                            <span class="member-roll">CB.SC.U4CSE23711</span>
+                        </div>
+                    </div>
+                    <div class="member-badge-bar">
+                        <span class="badge badge-primary">Faster R-CNN Benchmark</span>
+                        <span class="badge badge-success">100% Contribution</span>
+                    </div>
+                    <p class="member-desc">
+                        Developed the canonical two-stage Faster R-CNN (ResNet-50-FPN) benchmark. Validated proposal support breakdown, achieving 98.94% precision, 99.27% recall, and 99.10% F1-score on matched proposals.
+                    </p>
+                    <div class="member-deliverable">
+                        <strong>Key Deliverable:</strong> <code>Beach_Human_Detection_FasterRCNN_CORRECTED.ipynb</code>, Proposal Analysis, and Validation Matrix.
+                    </div>
+                </div>
+
+                <!-- MEMBER 5 -->
+                <div class="team-card glass-card">
+                    <div class="team-card-header">
+                        <div class="member-avatar">SI</div>
+                        <div class="member-title-block">
+                            <h4 class="member-name">Shaik Ibbraheem</h4>
+                            <span class="member-roll">CB.SC.U4CSE23742</span>
+                        </div>
+                    </div>
+                    <div class="member-badge-bar">
+                        <span class="badge badge-primary">RetinaNet Glint Suppression</span>
+                        <span class="badge badge-success">100% Contribution</span>
+                    </div>
+                    <p class="member-desc">
+                        Formulated marine glint suppression training with dynamic Focal Loss ($\alpha=0.25, \gamma=2.0$). Successfully suppressed crashing surf wave foam false alarms, delivering 89.20% mAP@0.50 and 32.0 FPS.
+                    </p>
+                    <div class="member-deliverable">
+                        <strong>Key Deliverable:</strong> <code>RetinaNet_FINAL_v2_CORRECTED.ipynb</code>, Glint Suppression Suite, and Comparative Evaluations.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-brand">
+                <img src="assets/LOGO1.png" alt="Amrita Logo" class="footer-logo" onerror="this.style.display='none'">
+                <div>
+                    <h4>Team 110 | Automated Coastal Surveillance System</h4>
+                    <p>Course Code: 23CSE498 Project Phase 2 | Department of Computer Science & Engineering</p>
+                    <p>Amrita School of Computing, Amrita Vishwa Vidyapeetham, Coimbatore, Tamil Nadu, India.</p>
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="#overview">Overview</a>
+                <a href="#dataset">Dataset</a>
+                <a href="#models">5 Models</a>
+                <a href="#benchmarks">Benchmarks</a>
+                <a href="#detections-showcase">Detections</a>
+                <a href="#confusion-matrices">Confusion Matrices</a>
+                <a href="https://github.com/MBalajiSakthivel007/G110_Github" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+                <a href="assets/IEEE_Coastal_Surveillance_Draft_Paper.pdf" download="Team110_Coastal_Surveillance_Draft_Paper.pdf">Draft Paper</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Team 110 (M. Balaji Sakthivel, C. V. Chaitanya, R. Shanmugham, B. R. Kaza, S. Ibbraheem). Guide: Ms. Sujee R. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE MODEL DETAILS MODAL -->
+    <div class="modal-backdrop" id="model-modal">
+        <div class="modal-dialog">
+            <button class="modal-close-btn" onclick="closeModelModal()">&times;</button>
+            <div class="modal-content" id="modal-content-area">
+                <!-- Injected via JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- IMAGE LIGHTBOX -->
+    <div class="lightbox-backdrop" id="image-lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close-btn" onclick="closeLightbox()">&times;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img src="" alt="Enlarged Visual" id="lightbox-img">
+            <div class="lightbox-caption" id="lightbox-caption"></div>
+        </div>
+    </div>
+
+    <!-- NOTIFICATION TOAST -->
+    <div class="toast" id="toast">Citation copied to clipboard!</div>
+
+    <script src="app.js"></script>
+</body>
+</html>
